@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Dynamiques</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <!-- Prism.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="bg-primary text-white text-center p-4">
+    <h1 class="text-3xl font-bold">Tests Dynamiques</h1>
+    <p class="mt-2">Découvrez ce que sont les tests dynamiques et comment ils fonctionnent.</p>
+</header>
+
+<!-- Navigation pour les pages dans le dossier content -->
+<nav class="bg-light p-3">
+    <a href="../index.html" class="btn btn-primary">Accueil</a>
+    <a href="tests-statiques.html" class="btn btn-secondary">Tests Statiques</a>
+    <a href="tests-dynamiques.html" class="btn btn-secondary">Tests Dynamiques</a>
+    <a href="tests-fonctionnels.html" class="btn btn-secondary">Tests Fonctionnels</a>
+    <a href="tests-non-fonctionnels.html" class="btn btn-secondary">Tests Non Fonctionnels</a>
+    <a href="tests-boite-noire.html" class="btn btn-secondary">Tests Boîte Noire</a>
+    <a href="tests-boite-blanche.html" class="btn btn-secondary">Tests Boîte Blanche</a>
+    <a href="devops.html" class="btn btn-secondary">DevOps</a>
+    <a href="ci-cd.html" class="btn btn-secondary">CI/CD</a>
+    <a href="tests-specifiques.html" class="btn btn-secondary">Tests Spécifiques</a>
+</nav>
+
+<!-- Main Content -->
+<main class="container my-5">
+    <!-- Description -->
+    <section id="description" data-aos="fade-up">
+        <h2 class="text-xl font-bold mb-3">Qu'est-ce qu'un test dynamique ?</h2>
+        <p>
+            Les tests dynamiques sont effectués en exécutant le programme pour valider son comportement.
+            Contrairement aux tests statiques, ils vérifient si le code fonctionne correctement lors de son exécution.
+        </p>
+        <ul>
+            <li>Exemple : Tester si une fonction retourne la bonne valeur avec une entrée donnée.</li>
+            <li>Exemple : Vérifier qu'une application ne plante pas après un clic sur un bouton.</li>
+        </ul>
+    </section>
+
+    <!-- Exercice interactif -->
+    <section id="interactive" data-aos="fade-up" class="mt-5">
+        <h2 class="text-xl font-bold mb-3">Exercice interactif : Simulation d'un test unitaire</h2>
+        <p>Voici un test de validation pour une fonction qui vérifie si un nombre est pair :</p>
+        <pre>
+            <code class="language-javascript">
+            function isEven(number) {
+                return number % 2 === 0;
+            }
+            </code>
+        </pre>
+        <p>Quelle sera la sortie pour l'entrée <strong>5</strong> ?</p>
+
+        <!-- Choix des réponses -->
+        <div class="my-3">
+            <label>
+                <input type="radio" name="dynamic-test" value="true"> true
+            </label><br>
+            <label>
+                <input type="radio" name="dynamic-test" value="false"> false
+            </label><br>
+            <label>
+                <input type="radio" name="dynamic-test" value="error"> Erreur
+            </label>
+        </div>
+
+        <button id="validate-dynamic" class="btn btn-primary mt-3">Valider ma réponse</button>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="text-center bg-light py-3">
+    <p>&copy; Belhaj Ouajdi, 2024</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Initialisation AOS
+    AOS.init();
+
+    // Validation de l'exercice interactif
+    document.getElementById('validate-dynamic').addEventListener('click', () => {
+        const selectedOption = document.querySelector('input[name="dynamic-test"]:checked');
+
+        if (!selectedOption) {
+            Swal.fire({
+                title: 'Erreur',
+                text: 'Veuillez sélectionner une réponse avant de valider.',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+
+        const userAnswer = selectedOption.value;
+
+        if (userAnswer === 'false') {
+            Swal.fire({
+                title: 'Bravo !',
+                text: 'Bonne réponse : La fonction retournera "false" pour 5, car 5 est impair.',
+                icon: 'success',
+                confirmButtonText: 'Continuer',
+            });
+        } else {
+            Swal.fire({
+                title: 'Oups !',
+                text: 'Ce n’est pas la bonne réponse. Essayez encore.',
+                icon: 'error',
+                confirmButtonText: 'Réessayer',
+            });
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Non Fonctionnels</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <!-- Prism.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="bg-primary text-white text-center p-4">
+    <h1 class="text-3xl font-bold">Tests Non Fonctionnels</h1>
+    <p class="mt-2">Apprenez comment tester les performances, la compatibilité et plus encore.</p>
+</header>
+
+<!-- Navigation pour les pages dans le dossier content -->
+<nav class="bg-light p-3">
+    <a href="../index.html" class="btn btn-primary">Accueil</a>
+    <a href="tests-statiques.html" class="btn btn-secondary">Tests Statiques</a>
+    <a href="tests-dynamiques.html" class="btn btn-secondary">Tests Dynamiques</a>
+    <a href="tests-fonctionnels.html" class="btn btn-secondary">Tests Fonctionnels</a>
+    <a href="tests-non-fonctionnels.html" class="btn btn-secondary">Tests Non Fonctionnels</a>
+    <a href="tests-boite-noire.html" class="btn btn-secondary">Tests Boîte Noire</a>
+    <a href="tests-boite-blanche.html" class="btn btn-secondary">Tests Boîte Blanche</a>
+    <a href="devops.html" class="btn btn-secondary">DevOps</a>
+    <a href="ci-cd.html" class="btn btn-secondary">CI/CD</a>
+    <a href="tests-specifiques.html" class="btn btn-secondary">Tests Spécifiques</a>
+</nav>
+
+<!-- Main Content -->
+<main class="container my-5">
+    <!-- Description -->
+    <section id="description" data-aos="fade-up">
+        <h2 class="text-xl font-bold mb-3">Qu'est-ce qu'un test non fonctionnel ?</h2>
+        <p>
+            Les tests non fonctionnels évaluent comment le logiciel fonctionne plutôt que ce qu'il fait.
+            Ces tests mesurent des aspects tels que la performance, la compatibilité, l'utilisabilité, la sécurité et plus encore.
+        </p>
+        <ul>
+            <li>Exemple : Tester la rapidité de chargement d'une page web.</li>
+            <li>Exemple : Vérifier si une application fonctionne correctement sur différents navigateurs.</li>
+        </ul>
+    </section>
+
+    <!-- Exercice interactif -->
+    <section id="interactive" data-aos="fade-up" class="mt-5">
+        <h2 class="text-xl font-bold mb-3">Exercice interactif : Testez la performance</h2>
+        <p>Cliquez sur "Tester" pour mesurer le temps de chargement simulé d’une page web :</p>
+        <button id="test-performance" class="btn btn-primary">Tester</button>
+        <div id="performance-result" class="mt-3 text-success" style="display: none;">
+            Temps de chargement : <span id="loading-time"></span> ms
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="text-center bg-light py-3">
+    <p>&copy; Belhaj Ouajdi, 2024</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Initialisation AOS
+    AOS.init();
+
+    // Simulation de test de performance
+    document.getElementById('test-performance').addEventListener('click', () => {
+        const startTime = performance.now();
+
+        // Simuler un délai de chargement de 1 à 3 secondes
+        setTimeout(() => {
+            const endTime = performance.now();
+            const loadingTime = (endTime - startTime).toFixed(2);
+
+            // Afficher le résultat
+            document.getElementById('loading-time').textContent = loadingTime;
+            document.getElementById('performance-result').style.display = 'block';
+
+            // Afficher une alerte de succès
+            Swal.fire({
+                title: 'Test terminé',
+                text: `La page s'est chargée en ${loadingTime} ms.`,
+                icon: 'success',
+                confirmButtonText: 'Continuer',
+            });
+        }, Math.random() * 2000 + 1000);
+    });
+</script>
+</body>
+</html>

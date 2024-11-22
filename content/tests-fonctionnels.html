@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tests Fonctionnels</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <!-- Prism.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+
+<!-- Header -->
+<header class="bg-primary text-white text-center p-4">
+    <h1 class="text-3xl font-bold">Tests Fonctionnels</h1>
+    <p class="mt-2">Apprenez comment valider les fonctionnalités d’un logiciel.</p>
+</header>
+
+<!-- Navigation pour les pages dans le dossier content -->
+<nav class="bg-light p-3">
+    <a href="../index.html" class="btn btn-primary">Accueil</a>
+    <a href="tests-statiques.html" class="btn btn-secondary">Tests Statiques</a>
+    <a href="tests-dynamiques.html" class="btn btn-secondary">Tests Dynamiques</a>
+    <a href="tests-fonctionnels.html" class="btn btn-secondary">Tests Fonctionnels</a>
+    <a href="tests-non-fonctionnels.html" class="btn btn-secondary">Tests Non Fonctionnels</a>
+    <a href="tests-boite-noire.html" class="btn btn-secondary">Tests Boîte Noire</a>
+    <a href="tests-boite-blanche.html" class="btn btn-secondary">Tests Boîte Blanche</a>
+    <a href="devops.html" class="btn btn-secondary">DevOps</a>
+    <a href="ci-cd.html" class="btn btn-secondary">CI/CD</a>
+    <a href="tests-specifiques.html" class="btn btn-secondary">Tests Spécifiques</a>
+</nav>
+
+<!-- Main Content -->
+<main class="container my-5">
+    <!-- Description -->
+    <section id="description" data-aos="fade-up">
+        <h2 class="text-xl font-bold mb-3">Qu'est-ce qu'un test fonctionnel ?</h2>
+        <p>
+            Les tests fonctionnels valident que le logiciel répond aux exigences spécifiées.
+            Ils vérifient que chaque fonctionnalité fonctionne comme attendu en utilisant des données d'entrée et des résultats attendus.
+        </p>
+        <ul>
+            <li>Exemple : Vérifier qu'un bouton "Envoyer" soumet correctement un formulaire.</li>
+            <li>Exemple : S’assurer qu’une recherche renvoie les résultats attendus.</li>
+        </ul>
+    </section>
+
+    <!-- Exercice interactif -->
+    <section id="interactive" data-aos="fade-up" class="mt-5">
+        <h2 class="text-xl font-bold mb-3">Exercice interactif : Validez une fonctionnalité</h2>
+        <p>Voici un formulaire simple. Remplissez-le et cliquez sur "Envoyer" pour voir si la fonctionnalité fonctionne :</p>
+        <form id="functional-test-form" class="bg-light p-3 border rounded">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nom :</label>
+                <input type="text" id="name" class="form-control" placeholder="Entrez votre nom" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email :</label>
+                <input type="email" id="email" class="form-control" placeholder="Entrez votre email" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Envoyer</button>
+        </form>
+        <div id="form-result" class="mt-3 text-success" style="display: none;">
+            Formulaire soumis avec succès !
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="text-center bg-light py-3">
+    <p>&copy; Belhaj Ouajdi, 2024</p>
+</footer>
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    // Initialisation AOS
+    AOS.init();
+
+    // Validation du formulaire
+    document.getElementById('functional-test-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById('name').value.trim();
+        const email = document.getElementById('email').value.trim();
+
+        if (!name || !email) {
+            Swal.fire({
+                title: 'Erreur',
+                text: 'Tous les champs doivent être remplis.',
+                icon: 'warning',
+                confirmButtonText: 'OK',
+            });
+            return;
+        }
+
+        // Si le formulaire est valide
+        document.getElementById('form-result').style.display = 'block';
+        Swal.fire({
+            title: 'Bravo !',
+            text: 'Le formulaire a été soumis avec succès.',
+            icon: 'success',
+            confirmButtonText: 'Continuer',
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapitre 2 : Types de Tests</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS -->
+    <link href="https://unpkg.com/aos@next/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+
+    <!-- GSAP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+
+    <!-- Popmotion -->
+    <script src="https://unpkg.com/browse/popmotion@11.0.5/dist/popmotion.min.js"></script>
+
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- FontAwesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Prism.js -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/styles.css">
+
+</head>
+<body class="bg-light">
+
+<!-- Header -->
+<header class="bg-primary text-white text-center p-4">
+    <h1 class="text-3xl font-bold">Bienvenue dans le monde des tests logiciels</h1>
+    <p class="mt-2">Découvrez les bases des types de tests de manière simple et interactive.</p>
+</header>
+
+<!-- Navigation -->
+<nav class="bg-light p-3">
+    <a href="index.html" class="btn btn-primary">Accueil</a>
+    <a href="content/tests-statiques.html" class="btn btn-secondary">Tests Statiques</a>
+    <a href="content/tests-dynamiques.html" class="btn btn-secondary">Tests Dynamiques</a>
+    <a href="content/tests-fonctionnels.html" class="btn btn-secondary">Tests Fonctionnels</a>
+    <a href="content/tests-non-fonctionnels.html" class="btn btn-secondary">Tests Non Fonctionnels</a>
+    <a href="content/tests-boite-noire.html" class="btn btn-secondary">Tests Boîte Noire</a>
+    <a href="content/tests-boite-blanche.html" class="btn btn-secondary">Tests Boîte Blanche</a>
+    <a href="content/devops.html" class="btn btn-secondary">DevOps</a>
+    <a href="content/ci-cd.html" class="btn btn-secondary">CI/CD</a>
+    <a href="content/tests-specifiques.html" class="btn btn-secondary">Tests Spécifiques</a>
+</nav>
+
+<!-- Main Content -->
+<main class="container my-5">
+    <!-- Introduction Section -->
+    <section id="introduction" data-aos="fade-up">
+        <h2 class="text-xl font-bold mb-3">Pourquoi les tests sont-ils importants ?</h2>
+        <p>Les tests logiciels permettent de s'assurer que les applications fonctionnent correctement et répondent aux attentes des utilisateurs.</p>
+        <div id="bug-animation" class="my-4 text-center">
+            <p class="mb-3">Animation : Imaginez un bouton qui ne fonctionne pas, puis voyez comment les tests corrigent cela !</p>
+            <button id="test-button" class="btn btn-danger">Je ne fonctionne pas encore</button>
+        </div>
+    </section>
+
+    <!-- Exercise Section -->
+    <section id="exercise" data-aos="fade-up">
+        <h2 class="text-xl font-bold mb-3">Exercice : Trouvez l’erreur dans le texte !</h2>
+        <p>Repérez l'erreur dans le texte ci-dessous et sélectionnez votre réponse :</p>
+        <div class="border p-3 bg-white shadow">
+            <p id="text-to-check" class="text-danger">"Exampel de texte avec une erreur."</p>
+
+            <!-- Choix des erreurs -->
+            <div class="my-3">
+                <label>
+                    <input type="radio" name="error" value="Exampel"> "Exampel" est incorrect.
+                </label><br>
+                <label>
+                    <input type="radio" name="error" value="de"> "de" est incorrect.
+                </label><br>
+                <label>
+                    <input type="radio" name="error" value="aucune"> Il n’y a pas d’erreur.
+                </label>
+            </div>
+
+            <button id="validate-button" class="btn btn-primary mt-3">Valider</button>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="text-center bg-light py-3">
+    <p>&copy; Belhaj Ouajdi, 2024</p>
+</footer>
+
+<!-- Custom JS -->
+<script src="js/scripts.js"></script>
+<script>
+    // Initialisation AOS
+    AOS.init();
+
+    // GSAP Animation for the Bug Button
+    const testButton = document.getElementById('test-button');
+    testButton.addEventListener('click', () => {
+        gsap.to(testButton, {
+            duration: 1,
+            backgroundColor: 'green',
+            color: 'white',
+            innerHTML: "Je fonctionne maintenant !",
+        });
+    });
+
+    // SweetAlert2 for the Exercise Button
+    const validateButton = document.getElementById('validate-button');
+    validateButton.addEventListener('click', () => {
+        const selectedOption = document.querySelector('input[name="error"]:checked');
+        if (selectedOption && selectedOption.value === 'Exampel') {
+            Swal.fire({
+                title: 'Bravo !',
+                text: 'Vous avez identifié le problème !',
+                icon: 'success',
+                confirmButtonText: 'Continuer',
+            });
+        } else {
+            Swal.fire({
+                title: 'Oups !',
+                text: 'Ce n’est pas la bonne réponse.',
+                icon: 'error',
+                confirmButtonText: 'Réessayer',
+            });
+        }
+    });
+</script>
+</body>
+</html>
